@@ -12,11 +12,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', (req, res) => {
     res.setHeader('content-type', 'text/html');
-    res.status(200).render('home');
+    res.status(200).render('../vistas/home');
 });
 app.get('/chat', (req, res) => {
     res.setHeader('content-type', 'text/html');
-    res.status(200).render('chat');
+    res.status(200).render('./vistas/chat.handlebars');
 });
 const servidor = app.listen(port, () => {
     console.log(`Hola chat, estamos en el puerto ${port}`);
