@@ -3,6 +3,7 @@ const socket = io();
 const mensajes = document.getElementById('mensajes');
 const mensaje = document.getElementById('mensaje');
 let nombre = '';
+
 mensajes.addEventListener('keyup', evt => {
     if (evt.key === 'Enter') { 
         if (evt.target.value.trim() !== '') {
@@ -12,6 +13,7 @@ mensajes.addEventListener('keyup', evt => {
         }
     }
 });
+
 swal.fire({
     title: "Ingrese su Nombre",
     input: "text",
@@ -20,7 +22,9 @@ swal.fire({
         return !value && "Tienes que ingresar un nombre"; // Cambiado de 'Tenes' a 'Tienes'
     },
     allowOutsideClick: false
-}).then((resultado) => { // Cambiado de ') =>' a '=>'
+})
+
+.then((resultado) => { // Cambiado de ') =>' a '=>'
     nombre = resultado.value;
     document.title = nombre;
     mensaje.focus(); 
@@ -33,6 +37,7 @@ swal.fire({
         mensajes.innerHTML = text;
         mensajes.scrollTop = mensajes.scrollHeight;
     });
+    
     socket.on('nuevoUsuario', mensaje => {
         swal.fire({
             text: `${nombre} Se conectó`, 
@@ -48,6 +53,7 @@ swal.fire({
             mensajes.scrollTop = mensajes.scrollHeight;
         });
     });
+    
     socket.on('usuarioDesconectado', usuario => { 
         swal.fire({
             text: `${usuario.nombre} Se desconectó`, 
@@ -56,3 +62,4 @@ swal.fire({
         });
     });
 });
+module.express = vistas;
